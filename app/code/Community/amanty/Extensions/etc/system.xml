@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<config>
+    <tabs>
+        <Amanty translate="label" module="extensions">
+            <label>Amanty</label>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+        </Amanty>
+    </tabs>
+</config>

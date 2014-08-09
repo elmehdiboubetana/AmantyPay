@@ -1,0 +1,33 @@
+<?php $_code = $this->getMethodCode() ?>
+<ul class="form-list">
+    <li><img src="<?php echo Mage::getBaseUrl('media') . 'atos/logo/AURORE.gif' ?>" alt="AURORE" /></li>
+</ul>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none">
+    <li><?php echo $this->__('You will be redirected to the payment server after the finalization of your order.') ?></li>
+    <li>
+        <strong><?php echo $this->__('To pay with %s, we need your birth date. Please, check it.', $this->getMethod()->getTitle()); ?></strong>
+    </li>
+    <li>
+        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+        <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat($_code . ':%s')->setFieldNameFormat($_code . '[%s]')->toHtml() ?>
+    </li>
+    <script type="text/javascript">
+        if ($('payment-buttons-container')) {
+            var button = $('payment-buttons-container').down('button');
+            var atosAuoreMethod = $('p_method_<?php echo $_code ?>');
+            if (button && atosAuoreMethod) {
+                Event.observe(button, 'click', function(){
+                    if (atosAuoreMethod.checked === true) {
+                        params = {
+                            dob: $('<?php echo $_code ?>:dob').value
+                        };
+                        new Ajax.Request('<?php echo Mage::getUrl('atos/payment/saveAuroreDob', array('_secure' => true)); ?>', {
+                            method: 'post',
+                            parameters: params
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+</ul>

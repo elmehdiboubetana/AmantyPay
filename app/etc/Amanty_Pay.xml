@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Amanty_Pay>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment />
+                <Amanty_Extensions />
+            </depends>
+        </Amanty_Pay>
+    </modules>
+</config>
